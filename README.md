@@ -22,7 +22,9 @@ browser pane, or in the system browser when that pane is unavailable.
 Everything is computed locally and deterministically. The plugin makes no
 network requests and reads no user configuration.
 
-<img src="doc/screenshot.png" alt="DeepSeek Peak/Off-Peak indicator in the OpenCode session header" width="560">
+<p align="center">
+  <img src="doc/screenshot.png" alt="DeepSeek Peak/Off-Peak indicator in the OpenCode session header" width="420">
+</p>
 
 ## Requirements
 
