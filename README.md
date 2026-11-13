@@ -22,7 +22,7 @@ browser pane, or in the system browser when that pane is unavailable.
 Everything is computed locally and deterministically. The plugin makes no
 network requests and reads no user configuration.
 
-![DeepSeek Peak/Off-Peak indicator in the OpenCode session header](doc/screenshot.png)
+<img src="doc/screenshot.png" alt="DeepSeek Peak/Off-Peak indicator in the OpenCode session header" width="560">
 
 ## Requirements
 
@@ -33,7 +33,7 @@ network requests and reads no user configuration.
 
 ```bash
 npm install
-npm run build
+npm run bundle
 ```
 
 The build writes a single CommonJS bundle:
@@ -50,8 +50,12 @@ without running lifecycle scripts. Rebuild and commit it whenever the source
 changes:
 
 ```bash
-npm run build
+npm run bundle
 ```
+
+Keep the script named `bundle`, not `build`: npm and pacote treat a `build`
+script as a git-dependency preparation trigger, which OpenCode does not support
+for plugin installs.
 
 For development, rebuild on every change:
 
@@ -90,7 +94,7 @@ opencode plugin update
 To pin a release instead of tracking `master`, append the tag:
 
 ```jsonc
-"opencode-deepseek-peak-indicator@git+https://github.com/m1khal3v/opencode-deepseek-peak-indicator.git#v1.0.0"
+"opencode-deepseek-peak-indicator@git+https://github.com/m1khal3v/opencode-deepseek-peak-indicator.git#v1.0.1"
 ```
 
 ### Local development install
@@ -106,7 +110,7 @@ For local work, point `plugins` at the absolute path to this directory:
 }
 ```
 
-The GUI reloads automatically after each `npm run build`.
+The GUI reloads automatically after each `npm run bundle`.
 
 ## Behavior
 
@@ -184,7 +188,7 @@ GitHub Actions runs on every push and pull request to `master`:
 
 - `npm run typecheck`
 - `npm test`
-- `npm run build`
+- `npm run bundle`
 - `git diff --exit-code -- dist`
 
 The last step fails when `src/` changed but the committed

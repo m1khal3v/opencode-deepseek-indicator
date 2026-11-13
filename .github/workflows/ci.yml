@@ -39,7 +39,7 @@ jobs:
         run: npm test
 
       - name: Build GUI bundle
-        run: npm run build
+        run: npm run bundle
 
       - name: Verify committed bundle
         run: git diff --exit-code -- dist
