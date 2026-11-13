@@ -3,10 +3,11 @@
 [![CI](https://github.com/m1khal3v/opencode-deepseek-peak-indicator/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/m1khal3v/opencode-deepseek-peak-indicator/actions/workflows/ci.yml)
 
 A GUI-only OpenCode Desktop plugin that shows the current DeepSeek API tariff
-period in the session header:
+period in the session header.
 
-- `● 2 hours 14 minutes`
-- `● 1 hour 45 minutes`
+<p align="center">
+  <img src="doc/screenshot.png" alt="DeepSeek Peak/Off-Peak indicator in the OpenCode session header" width="420">
+</p>
 
 The dot is green in Off-Peak and red in Peak. The badge is placed directly to the
 left of **Toggle session context**. Hovering shows a two-line tooltip:
@@ -21,10 +22,6 @@ browser pane, or in the system browser when that pane is unavailable.
 
 Everything is computed locally and deterministically. The plugin makes no
 network requests and reads no user configuration.
-
-<p align="center">
-  <img src="doc/screenshot.png" alt="DeepSeek Peak/Off-Peak indicator in the OpenCode session header" width="420">
-</p>
 
 ## Requirements
 
