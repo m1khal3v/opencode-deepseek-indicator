@@ -105,7 +105,7 @@ opencode plugin update
 To pin a release instead of tracking `master`, append the tag:
 
 ```jsonc
-"opencode-deepseek-indicator@git+https://github.com/m1khal3v/opencode-deepseek-indicator.git#v2.0.0"
+"opencode-deepseek-indicator@git+https://github.com/m1khal3v/opencode-deepseek-indicator.git#v2.0.1"
 ```
 
 ### Upgrading from the old package name
