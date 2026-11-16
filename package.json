@@ -1,23 +1,24 @@
 {
-  "name": "opencode-deepseek-peak-indicator",
-  "version": "1.0.1",
+  "name": "opencode-deepseek-indicator",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "GUI-only OpenCode Desktop v2 plugin showing the current DeepSeek API Peak/Off-Peak period.",
+  "description": "GUI-only OpenCode Desktop v2 plugin showing the current DeepSeek API Peak/Off-Peak period and account balance.",
   "license": "MIT",
   "author": "Anton Mikhalev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m1khal3v/opencode-deepseek-peak-indicator.git"
+    "url": "git+https://github.com/m1khal3v/opencode-deepseek-indicator.git"
   },
-  "homepage": "https://github.com/m1khal3v/opencode-deepseek-peak-indicator#readme",
+  "homepage": "https://github.com/m1khal3v/opencode-deepseek-indicator#readme",
   "bugs": {
-    "url": "https://github.com/m1khal3v/opencode-deepseek-peak-indicator/issues"
+    "url": "https://github.com/m1khal3v/opencode-deepseek-indicator/issues"
   },
   "keywords": [
     "opencode",
     "opencode-plugin",
     "deepseek",
+    "balance",
     "peak",
     "off-peak"
   ],
@@ -38,12 +39,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@opencode/plugin": "^2.3.0"
+    "@opencode/plugin": "^2.3.0",
+    "effect": "4.1.0"
   },
   "peerDependencies": {
     "solid-js": "^1.9.0"
   },
   "devDependencies": {
+    "@types/node": "^22.0.0",
     "solid-js": "^1.9.0",
     "typescript": "^5.9.0",
     "vite": "^7.0.0",

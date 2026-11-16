@@ -1,16 +1,16 @@
 /* The host button (ghost-muted) owns typography, hover, active and focus styles. */
-[data-component="button-v2"][data-variant="ghost-muted"].deepseek-peak-indicator {
+[data-component="button-v2"][data-variant="ghost-muted"].deepseek-indicator {
   flex: 0 0 auto;
   padding: 0 6px;
   color: var(--v2-text-text-faint);
   white-space: nowrap;
 }
 
-[data-component="button-v2"][data-variant="ghost-muted"].deepseek-peak-indicator:active {
+[data-component="button-v2"][data-variant="ghost-muted"].deepseek-indicator:active {
   color: var(--v2-text-text-muted);
 }
 
-.deepseek-peak-indicator__dot {
+.deepseek-indicator__dot {
   display: block;
   width: 7px;
   height: 7px;
@@ -19,23 +19,23 @@
   background: #c9514d;
 }
 
-.deepseek-peak-indicator__dot[data-appearance="dark"][data-period="off-peak"] {
+.deepseek-indicator__dot[data-appearance="dark"][data-period="off-peak"] {
   background: #3c9a67;
 }
 
-.deepseek-peak-indicator__dot[data-appearance="dark"][data-period="peak"] {
+.deepseek-indicator__dot[data-appearance="dark"][data-period="peak"] {
   background: #c9514d;
 }
 
-.deepseek-peak-indicator__dot[data-appearance="light"][data-period="off-peak"] {
+.deepseek-indicator__dot[data-appearance="light"][data-period="off-peak"] {
   background: #2b7a4f;
 }
 
-.deepseek-peak-indicator__dot[data-appearance="light"][data-period="peak"] {
+.deepseek-indicator__dot[data-appearance="light"][data-period="peak"] {
   background: #b83d39;
 }
 
-.deepseek-peak-indicator__sr {
+.deepseek-indicator__sr {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -47,17 +47,31 @@
   border: 0;
 }
 
-.deepseek-peak-indicator__timer {
+.deepseek-indicator__timer,
+.deepseek-indicator__balance {
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
-.deepseek-peak-tooltip {
+.deepseek-indicator__plus {
+  white-space: nowrap;
+}
+
+.deepseek-indicator__bonus[data-appearance="dark"] {
+  color: #d48942;
+}
+
+.deepseek-indicator__bonus[data-appearance="light"] {
+  color: #b56318;
+}
+
+.deepseek-tooltip {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
 }
 
-.deepseek-peak-tooltip > span {
+.deepseek-tooltip > span {
   white-space: nowrap;
 }

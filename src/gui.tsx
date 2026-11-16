@@ -1,7 +1,10 @@
 import { createSignal } from "solid-js"
 import { Plugin, Slot, Style, type SessionRef } from "@opencode/plugin/gui"
 import { Browser } from "@opencode/plugin/gui/browser"
-import { PeakIndicator } from "./indicator"
+import type { BalanceSnapshot } from "./contract"
+import { BalanceIpc } from "./contract"
+import { DeepSeekIndicator } from "./indicator"
+import { main } from "./main"
 import css from "./styles.css?inline"
 
 const DEEPSEEK_PRICING_URL = "https://api-docs.deepseek.com/quick_start/pricing"
@@ -11,6 +14,7 @@ export default Plugin.define({
     // One clock for every session header in this window. The signal lives here,
     // never at module scope, so hot reloads and extra windows cannot share it.
     const [now, setNow] = createSignal(Date.now())
+    const [balance, setBalance] = createSignal<BalanceSnapshot>()
     const syncNow = () => setNow(Date.now())
     const timer = setInterval(syncNow, 1_000)
 
@@ -20,6 +24,39 @@ export default Plugin.define({
     window.addEventListener("focus", syncNow)
 
     ctx.add(Style, css)
+
+    // The balance is fetched once when the window opens and then every five
+    // minutes by main. A missing main entry, as on the web, leaves the timer only.
+    const client = (() => {
+      try {
+        return ctx.main(BalanceIpc)
+      } catch {
+        return undefined
+      }
+    })()
+    const refreshBalance = async () => {
+      if (client === undefined) return
+
+      try {
+        const snapshot = await client.getBalance({}, { signal: ctx.signal })
+
+        if (!ctx.signal.aborted) setBalance(snapshot)
+      } catch {
+        // No main process or a suspended plugin: keep the status-only badge.
+      }
+    }
+
+    let stopBalance: (() => void) | undefined
+
+    if (client !== undefined) {
+      void refreshBalance()
+
+      try {
+        stopBalance = client.on("changed", (snapshot) => setBalance(snapshot))
+      } catch {
+        stopBalance = undefined
+      }
+    }
 
     // The built-in browser pane is optional: on the web client or while its
     // plugin is disabled the contract is inactive and we fall back to the OS.
@@ -46,10 +83,11 @@ export default Plugin.define({
       // the details popover uses 20. Order 9 places us directly to its left.
       order: 9,
       render: (input) => (
-        <PeakIndicator
+        <DeepSeekIndicator
           active={() => input.active}
           session={() => input.session}
           now={now}
+          balance={balance}
           openPricing={openPricing}
         />
       ),
@@ -59,6 +97,8 @@ export default Plugin.define({
       clearInterval(timer)
       document.removeEventListener("visibilitychange", syncNow)
       window.removeEventListener("focus", syncNow)
+      stopBalance?.()
     }
   },
+  main,
 })
