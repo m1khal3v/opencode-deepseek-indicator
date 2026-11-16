@@ -47,6 +47,21 @@
   border: 0;
 }
 
+.deepseek-indicator__content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.deepseek-indicator__separator {
+  display: flex;
+  width: 6px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
 .deepseek-indicator__timer,
 .deepseek-indicator__balance {
   font-variant-numeric: tabular-nums;

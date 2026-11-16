@@ -75,23 +75,29 @@ export function DeepSeekIndicator(props: DeepSeekIndicatorProps) {
             aria-hidden="true"
           />
           <span class="deepseek-indicator__sr">{label()}</span>
-          <span class="deepseek-indicator__timer">{timer()}</span>
-          <Show when={display()}>
-            {(value) => (
-              <span class="deepseek-indicator__balance">
-                <span class="deepseek-indicator__separator"> · </span>
-                {value().primary}
-                <Show when={value().bonus}>
-                  <span class="deepseek-indicator__plus">
-                    {" + "}
-                    <span class="deepseek-indicator__bonus" data-appearance={ctx.appearance.mode()}>
-                      {value().bonus}
-                    </span>
+          <span class="deepseek-indicator__content">
+            <span class="deepseek-indicator__timer">{timer()}</span>
+            <Show when={display()}>
+              {(value) => (
+                <>
+                  <span class="deepseek-indicator__separator" aria-hidden="true">
+                    ·
                   </span>
-                </Show>
-              </span>
-            )}
-          </Show>
+                  <span class="deepseek-indicator__balance">
+                    {value().primary}
+                    <Show when={value().bonus}>
+                      <span class="deepseek-indicator__plus">
+                        {" + "}
+                        <span class="deepseek-indicator__bonus" data-appearance={ctx.appearance.mode()}>
+                          {value().bonus}
+                        </span>
+                      </span>
+                    </Show>
+                  </span>
+                </>
+              )}
+            </Show>
+          </span>
         </ctx.ui.Button>
       </ctx.ui.Tooltip>
     </Show>
